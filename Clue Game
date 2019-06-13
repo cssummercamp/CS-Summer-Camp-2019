@@ -1,0 +1,77 @@
+# Clue
+#  Player makes guesses vs computer until criminal identified
+
+import random
+
+suspects = ['Mr. Green','Col. Mustard','Mrs. Peacock','Prof. Plum','Miss Scarlet','Mrs. White']
+weapons = ['Candlestick','Knife','Lead pipe','Revolver','Rope','Wrench']
+rooms = ['Kitchen','Ballroom','Conservatory','Dining Room','Billiard Room','Library','Lounge','Hall','Study']
+
+cards = suspects + weapons + rooms
+
+def printNotepad(n):
+    notepadStr = "\nYou still suspect the following things: "
+    for i in range(0,21):
+        if n[i]:
+            notepadStr = notepadStr + cards[i] + ", "
+    return notepadStr[:len(notepadStr)-2]
+
+def makeGuess(np,f,s,w,r):
+    # print out the current accusation
+    # check to see if this accusation solves the case
+    # get a clue to return to the user if the case was not solved
+    return clue
+
+def takeTurn(np,f):
+    s = -1
+    while (s < 0 or s > 5):
+        s = int(input("Pick a suspect:\n(0) Green\n(1) Mustard\n(2) Peacock\n(3) Plum\n(4) Scarlet\n(5) White\n? "))
+    w = -1
+    while (w < 6 or w > 11):
+        w = int(input("Pick a weapon:\n(6) Candlestick\n(7) Knife\n(8) Lead Pipe\n(9) Revolver\n(10) Rope\n(11) Wrench\n? "))
+    r = -1
+    while (r < 12 or r > 20):
+        r = int(input("Pick a room:\n(12) Kitchen\n(13) Ballroom\n(14) Conservatory\n(15) Dining Room\n(16) Billiard Room\n(17) Library\n(18) Lounge\n(19) Hall\n(20) Study\n? "))
+    clue = makeGuess(np,f,s,w,r)
+    print("You can eliminate " + clue + " from your investigation.\n")
+    if clue == "nothing":
+        return True
+    return False
+
+def cpuTurn(np,f):
+    # select a random item from the unknown information about the suspects
+    # select a random item from the unknown information about the weapons
+    # select a random item from the unknown information about the rooms
+    # submit the guess
+    # if the outcomes is correct, return True, otherwise False
+    return False
+
+def clue():
+    facts = []
+    facts.append(random.randint(0,5))       #suspect
+    facts.append(random.randint(6,11))      #weapon
+    facts.append(random.randint(12,20))    #room
+
+    player_notepad = 21*[True]
+    cpu_notepad = 21*[True]
+
+    starting_clues = random.sample(range(21),21)
+    starting_clues.remove(facts[0])
+    starting_clues.remove(facts[1])
+    starting_clues.remove(facts[2])
+    
+    for i in range(0,12,2):
+        player_notepad[starting_clues[i]] = False
+        cpu_notepad[starting_clues[i+1]] = False
+
+    turn = 0
+    guessed = False
+    while not guessed:
+        if turn == 0:
+            print(printNotepad(player_notepad))
+            guessed = takeTurn(player_notepad,facts)
+        else:
+            guessed = cpuTurn(cpu_notepad,facts)
+        turn = (turn + 1) % 2
+    print("The crime was committed by " + cards[facts[0]] + " in the " + cards[facts[2]] + " with the " + cards[facts[1]] + "!")
+    return
