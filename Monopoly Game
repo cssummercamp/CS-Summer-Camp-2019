@@ -1,0 +1,25 @@
+#monopoly sim
+
+import random
+
+spaces = ("GO","Mediterranean Ave","Community Chest","Baltic Ave","Income Tax",
+          "Reading Railroad","Oriental Ave","Chance","Vermont Ave","Connecticut Ave",
+          "Jail/Just Visiting","St Charles Place","Electric Company","States Ave","Virginia Ave",
+          "Pennsylvania Railroad","St James Place","Community Chest","Tennessee Ave","New York Ave",
+          "Free Parking","Kentucky Ave","Chance","Indiana Ave","Illinois Ave",
+          "B&O Railroad","Atlantic Ave","Ventnor Ave","Water Works","Marvin Gardens",
+          "Go to Jail","Pacific Ave","North Carolina Ave","Community Chest","Pennsylvania Ave",
+          "Short Line Railroad","Chance","Park Place","Luxury Tax","Boardwalk")
+
+def shuffle(n,d):
+    return
+
+def runSim(n,v):
+    # most are of the "get" / "pay" variety; J = Go to Jail; F = Get Out of Jail Free
+    commChest = 14*['X']+['J']+['F']
+    
+    # some "get" / "pay"; # = go to that space; U = nearest utility; R = nearest railroad;
+    #   J & F as above
+    chance = 5*['X']+['0','24','11','U','R','F','-3','J','5','39']
+    
+    return
